@@ -3,6 +3,7 @@ import "./Login.css"
 import {toast} from "react-toastify"
 import Axios from "../utils/Axios"
 import jwtDecode from "jwt-decode"
+import checkUser from '../utils/checkUser'
 import setAxiosAuthToken from '../utils/setAxiosAuthToken';
 
 
@@ -17,6 +18,12 @@ export class Login extends Component {
         passwordOnFocus:false
     }
 
+    componentDidMount(){
+        let check = checkUser()
+        if(check){
+            this.props.history.push("/bocure")
+        }
+    }
 
     handleInputs = (event)=>{
         if(this.state[event.target.name].length===0){
@@ -51,14 +58,17 @@ export class Login extends Component {
         event.preventDefault()
         try {
             let currentUser = {
-                email:this.state.email,
+                emailUsername:this.state.email,
                 password:this.state.password
             }
             let login = await Axios.post("/api/user/login", currentUser)
             console.log(login.data.payload)
             let jwtToken = login.data.payload
             setAxiosAuthToken(jwtToken)
+            let decodedToken = jwtDecode(jwtToken)
             window.localStorage.setItem("jwtToken", jwtToken)
+            this.props.handleUserLogin(decodedToken)
+            this.props.history.push("/bocure")
             toast.success(`Success login`, {
                 position: "top-center",
                 autoClose: 5000,
@@ -70,7 +80,7 @@ export class Login extends Component {
             });
         // this.props.history.push("/bocure")
         } catch (error) {
-            toast.error(`Check email or password`, {
+            toast.error(`Check email/username or password`, {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -108,12 +118,11 @@ export class Login extends Component {
                 <div>
                     <form onSubmit={this.handleSubmitButton}>
                         <div>
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="email">Email or username</label>
                         <input 
-                        type="email" 
                         name="email" 
                         id="email" 
-                        placeholder="Email"
+                        placeholder="Email or username"
                         onChange={this.handleOnChange} 
                         value={email} 
                         onBlur={this.handleInputs}

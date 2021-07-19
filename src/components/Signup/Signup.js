@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { isEmpty, isStrongPassword, isEmail, isAlpha, isAlphanumeric } from 'validator'
 import Axios from '../utils/Axios'
 import { toast } from 'react-toastify'
+import checkUser from '../utils/checkUser'
 
 export class Signup extends Component {
     state={
@@ -25,6 +26,13 @@ export class Signup extends Component {
         confirmPasswordError:"",
         submitButtonDisabled:true
 
+    }
+
+    componentDidMount(){
+        let check = checkUser()
+        if(check){
+            this.props.history.push("/bocure")
+        }
     }
 
     handleFirstAndLastNameInput = (event)=>{
@@ -231,6 +239,7 @@ export class Signup extends Component {
         try {
             let newUser = {firstName:this.state.firstName, lastName:this.state.lastName, username:this.state.username, email:this.state.email, password:this.state.password}
             let success = await Axios.post ('/api/user/signup', newUser)
+            this.props.history.push("/login")
             toast.success(`User created - Please login`, {
                 position: "top-center",
                 autoClose: 5000,
