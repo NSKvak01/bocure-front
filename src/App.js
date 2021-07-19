@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Login from './components/Login/Login'
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import MainRouter from './MainRouter';
 
 
 export class App extends Component {
@@ -9,7 +9,7 @@ export class App extends Component {
     return (
       <React.Fragment>
         <ToastContainer />
-        <Login />
+        <MainRouter />
       </React.Fragment>
     )
   }
