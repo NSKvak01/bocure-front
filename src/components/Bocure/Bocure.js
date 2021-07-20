@@ -15,104 +15,161 @@ export class Bocure extends Component {
         accessibility:"",
         link:"",
         key:"",
-        bocureList:[]
+        bocureList:[],
+        errorMessage:""
 
     }
+    renderBocures =(result)=>{
+        this.setState({
+            activity:result.data.activity,
+            link:result.data.link,
+            key:result.data.key,
+            participants:result.data.participants
+        })
+        if(result.data.price<0.2){
+            this.setState({
+                price:"💵"
+            })
+        } else if (result.data.price<0.5){
+            this.setState({
+                price:"💵💵"
+            })
+        } else {
+            this.setState({
+                price:"💵💵💵"
+            })
+        }
+        if(result.data.accessibility < 0.5){
+            this.setState({
+                accessibility:"Easily accessible"
+            })
+        } else if(result.data.accessibility<1){
+            this.setState({
+                accessibility:"Accessible"
+            })
+        } else {
+            this.setState({
+                accessibility:"Medium accessibility"
+            })
+        }
+        if(result.data.type === "education"){
+            this.setState({
+                type:"🎓Education"
+            })
+        }
+        if(result.data.type === "recreational"){
+            this.setState({
+                type:"🤸‍♀️ Recreational"
+            })
+        }
+        if(result.data.type === "social"){
+            this.setState({
+                type:"🗣 Social"
+            })
+        }
+        if(result.data.type === "diy"){
+            this.setState({
+                type:"✂️ DIY"
+            })
+        }
+        if(result.data.type === "charity"){
+            this.setState({
+                type:"🙌 Charity"
+            })
+        }
+        if(result.data.type === "cooking"){
+            this.setState({
+                type:"🤤 Cooking"
+            })
+        }
+        if(result.data.type === "relaxation"){
+            this.setState({
+                type:"🛀 Relaxation"
+            })
+        }
+        if(result.data.type === "music"){
+            this.setState({
+                type:"🎶 Music"
+            })
+        }
+        if(result.data.type === "busywork"){
+            this.setState({
+                type:"💡 Busywork"
+            })
+        }
+        console.log(result)
+    }
+    
+    componentDidMount(){
+        
+        // let sessionStorageBocureItem = window.sessionStorage.getItem("bocureItem")
+        try {
+            this.getBocuresByKey()
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    getBocuresByKey = async()=>{
+        if(window.sessionStorage.getItem("bocureKey")){
+            let key = window.sessionStorage.getItem("bocureKey")
+            let result = await Axios.get(`/api/bocure/get-bocure-by-key?key=${key}`)
+            this.renderBocures(result)
+        } else{
+            let result = await Axios.get(`/api/bocure/get-bocures-from-api?maxprice=${this.state.maxPriceInput}&participants=${this.state.participantsInput}&type=${this.state.typeInput}`)
+            this.renderBocures(result)
+        }
+    }
+
     handleOnSubmit = async(event)=>{
         event.preventDefault()
         try {
             let result = await Axios.get(`/api/bocure/get-bocures-from-api?maxprice=${this.state.maxPriceInput}&participants=${this.state.participantsInput}&type=${this.state.typeInput}`)
-            if(result !== undefined){
+            this.setState({
+                errorMessage:""
+            })
+            if(result.data.error===undefined){
+                if(this.state.bocureList.length>0){
+                    this.state.bocureList.map((item)=>{
+                        if(result.data.key===item.key){
+                            this.setState({
+                                errorMessage: "No more activities with chosen criteria. Please change your filters",
+                            })
+                        } 
+                        return item
+                    })
+                }
+                if(this.state.errorMessage=== ""){
+                    let searchedBocure={
+                        activity:this.state.activity,
+                        accessibility:this.state.accessibility,
+                        link:result.data.link,
+                        key:this.state.key,
+                        type:this.state.type,
+                        price:this.state.price,
+                        participants:this.state.participants
+                    }
+                    this.state.bocureList.push(searchedBocure)
+                    let stringifiedBocureList = JSON.stringify(this.state.bocureList)
+                    let bocureKey = result.data.key
+                    window.sessionStorage.setItem("bocureKey", bocureKey)
+                    window.sessionStorage.setItem("searchedBocures", stringifiedBocureList)
+                    console.log(this.state.bocureList)
+                }
+                this.renderBocures(result)
+            } else{
                 this.setState({
-                    activity:result.data.activity,
-                    link:result.data.link,
-                    key:result.data.key,
-                    participants:result.data.participants
+                    errorMessage:result.data.error,
+                    activity:"",
+                    accessibility:"",
+                    link:"",
+                    key:"",
+                    type:"",
+                    price:"",
+                    participants:""
                 })
-                if(result.data.price<0.2){
-                    this.setState({
-                        price:"💵"
-                    })
-                } else if (result.data.price<0.5){
-                    this.setState({
-                        price:"💵💵"
-                    })
-                } else {
-                    this.setState({
-                        price:"💵💵💵"
-                    })
-                }
-                if(result.data.accessibility < 0.5){
-                    this.setState({
-                        accessibility:"Easily accessible"
-                    })
-                } else if(result.data.accessibility<1){
-                    this.setState({
-                        accessibility:"Accessible"
-                    })
-                } else {
-                    this.setState({
-                        accessibility:"Medium accessibility"
-                    })
-                }
-                if(result.data.type === "education"){
-                    this.setState({
-                        type:"🎓Education"
-                    })
-                }
-                if(result.data.type === "recreational"){
-                    this.setState({
-                        type:"🤸‍♀️ Recreational"
-                    })
-                }
-                if(result.data.type === "social"){
-                    this.setState({
-                        type:"🗣 Social"
-                    })
-                }
-                if(result.data.type === "diy"){
-                    this.setState({
-                        type:"✂️ DIY"
-                    })
-                }
-                if(result.data.type === "charity"){
-                    this.setState({
-                        type:"🙌 Charity"
-                    })
-                }
-                if(result.data.type === "cooking"){
-                    this.setState({
-                        type:"🤤 Cooking"
-                    })
-                }
-                if(result.data.type === "relaxation"){
-                    this.setState({
-                        type:"🛀 Relaxation"
-                    })
-                }
-                if(result.data.type === "music"){
-                    this.setState({
-                        type:"🎶 Music"
-                    })
-                }
-                if(result.data.type === "busywork"){
-                    this.setState({
-                        type:"💡 Busywork"
-                    })
-                }
             }
-            let searchedBocure={
-                activity:this.state.activity,
-                accessibility:this.state.accessibility,
-                link:result.data.link,
-                key:this.state.key,
-                type:this.state.type,
-                price:this.state.price,
-                participants:this.state.participants
-                
-            }
-            this.state.bocureList.push(searchedBocure)
-            console.log(this.state.bocureList)
         } catch (error) {
             console.log(error)
         }
@@ -201,6 +258,8 @@ export class Bocure extends Component {
                         <button onClick={this.handleOnSubmit}>Find Bocure</button>
                     </div>
                 </div>
+                <hr />
+                <span>{this.state.errorMessage && this.state.errorMessage}</span>
                 <div>
                     
                     <BocureItem 

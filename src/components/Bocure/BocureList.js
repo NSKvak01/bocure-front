@@ -6,6 +6,7 @@ function BocureList (props) {
             <div
                 key={item.key}
                 >
+                        {/* <img src="https://pixy.org/download/4771681/"/> */}
                         <h3>{`Activity: ${item.activity}`}</h3>
                         <h3>{`Type: ${item.type}`}</h3>
                         <h3>{`Price: ${item.price}`}</h3>
