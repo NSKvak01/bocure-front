@@ -238,7 +238,7 @@ export class Signup extends Component {
         event.preventDefault()
         try {
             let newUser = {firstName:this.state.firstName, lastName:this.state.lastName, username:this.state.username, email:this.state.email, password:this.state.password}
-            let success = await Axios.post ('/api/user/signup', newUser)
+            await Axios.post ('/api/user/signup', newUser)
             this.props.history.push("/login")
             toast.success(`User created - Please login`, {
                 position: "top-center",
