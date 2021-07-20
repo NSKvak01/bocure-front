@@ -8,7 +8,7 @@ export class Nav extends Component {
             <nav>
                 <div>
                     <h1>
-                        <Link to ="/Bocure">Cure your boredom. Bocure!</Link>
+                        <Link to ="/bocure">Cure your boredom. Bocure!</Link>
                     </h1>
                 </div>
                 <div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { isEmpty, isStrongPassword, isEmail, isAlpha, isAlphanumeric } from 'validator'
+import { isStrongPassword, isEmail, isAlpha, isAlphanumeric } from 'validator'
 import Axios from '../utils/Axios'
 import { toast } from 'react-toastify'
 import checkUser from '../utils/checkUser'

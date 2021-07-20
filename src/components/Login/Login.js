@@ -136,7 +136,7 @@ export class Login extends Component {
                             name="password" 
                             id="password" 
                             placeholder="password"
-                            onChange={this.handleOnChange} 
+                            onChange={this.handleOnChange}
                             onBlur = {this.handleInputs}
                             onFocus={this.handleInputOnFocus}
                             value={password} />
@@ -144,7 +144,6 @@ export class Login extends Component {
                             <span>{passwordError&&passwordError}</span>
                         </div>
                         <button type="Submit" disabled={submitButtonDisabled}>Login</button>
-
                     </form>
                 </div>
             </div>
