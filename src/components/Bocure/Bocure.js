@@ -15,9 +15,7 @@ export class Bocure extends Component {
         accessibility:"",
         link:"",
         key:"",
-        bocureList:[],
-        errorMessage:""
-
+        errorMessage:"",
     }
     renderBocures =(result)=>{
         this.setState({
@@ -105,12 +103,16 @@ export class Bocure extends Component {
         // let sessionStorageBocureItem = window.sessionStorage.getItem("bocureItem")
         try {
             this.getBocuresByKey()
+            console.log(this.state.bocureList)
             
         } catch (error) {
             console.log(error)
         }
     }
-
+componentDidUpdate(){
+    console.log(this.state.bocureList)
+    
+}
     getBocuresByKey = async()=>{
         if(window.sessionStorage.getItem("bocureKey")){
             let key = window.sessionStorage.getItem("bocureKey")
@@ -125,49 +127,17 @@ export class Bocure extends Component {
     handleOnSubmit = async(event)=>{
         event.preventDefault()
         try {
-            let result = await Axios.get(`/api/bocure/get-bocures-from-api?maxprice=${this.state.maxPriceInput}&participants=${this.state.participantsInput}&type=${this.state.typeInput}`)
             this.setState({
                 errorMessage:""
             })
+            let result = await Axios.get(`/api/bocure/get-bocures-from-api?maxprice=${this.state.maxPriceInput}&participants=${this.state.participantsInput}&type=${this.state.typeInput}`)
             if(result.data.error===undefined){
-                if(this.state.bocureList.length>0){
-                    this.state.bocureList.map((item)=>{
-                        if(result.data.key===item.key){
-                            this.setState({
-                                errorMessage: "No more activities with chosen criteria. Please change your filters",
-                            })
-                        } 
-                        return item
-                    })
-                }
-                if(this.state.errorMessage=== ""){
-                    let searchedBocure={
-                        activity:this.state.activity,
-                        accessibility:this.state.accessibility,
-                        link:result.data.link,
-                        key:this.state.key,
-                        type:this.state.type,
-                        price:this.state.price,
-                        participants:this.state.participants
-                    }
-                    this.state.bocureList.push(searchedBocure)
-                    let stringifiedBocureList = JSON.stringify(this.state.bocureList)
+                    this.renderBocures(result)
                     let bocureKey = result.data.key
                     window.sessionStorage.setItem("bocureKey", bocureKey)
-                    window.sessionStorage.setItem("searchedBocures", stringifiedBocureList)
-                    console.log(this.state.bocureList)
-                }
-                this.renderBocures(result)
-            } else{
+                } else{
                 this.setState({
                     errorMessage:result.data.error,
-                    activity:"",
-                    accessibility:"",
-                    link:"",
-                    key:"",
-                    type:"",
-                    price:"",
-                    participants:""
                 })
             }
         } catch (error) {
@@ -261,7 +231,6 @@ export class Bocure extends Component {
                 <hr />
                 <span>{this.state.errorMessage && this.state.errorMessage}</span>
                 <div>
-                    
                     <BocureItem 
                     activity = {activity}
                     price={price}
@@ -271,13 +240,6 @@ export class Bocure extends Component {
                     link={link}
                     key={key}
                     />
-                </div>
-                <div>
-                    <ul>
-                    <BocureList 
-                    bocureList={bocureList}
-                    />
-                    </ul>
                 </div>
             </div>
         )
