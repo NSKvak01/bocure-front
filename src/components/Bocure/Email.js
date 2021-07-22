@@ -3,6 +3,8 @@ import { Form, Button, FormCheck,  } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Axios from '../utils/Axios';
 import {isEmpty, isEmail} from "validator"
+import "./Bocure.css"
+import { toast } from 'react-toastify';
 
 
 export class CalendarScheduler extends Component {
@@ -30,7 +32,7 @@ componentDidMount(){
     this.setState({
         subject:this.props.activity,
         date:this.props.date,
-        message:`I want to ${this.props.activity}. Join me!`
+        message:`I want to ${this.props.activity.toLowerCase()}. Join me!`
     })
 }
 
@@ -74,7 +76,6 @@ handleInputs = (event)=>{
         }
 }
 
-
 handleEmailInput = (event)=>{
     if(isEmpty(this.state.email)){
         this.setState({
@@ -94,7 +95,6 @@ handleEmailInput = (event)=>{
         }
     }
 }
-
 
 handleOnChange = (event)=>{
     this.setState({
@@ -140,107 +140,125 @@ sendEmail = async event => {
             name: '', 
             email: '', 
         });
+        toast.success(this.state.result.message)
 
         console.log("success")
 
     } catch (error) {
         console.log(error)
+        toast.error(this.state.result.message)
     }
 };
 
 render() {
 return (
     <React.Fragment>
-        {this.state.result && (
-            <p className={`${this.state.result.success ? 'success' : 'error'}`}>
-            {this.state.result.message}
-            </p>
-        )}
-        <form onSubmit={this.sendEmail}>
-            <Form.Group controlId="name">
-            <Form.Label>Full Name</Form.Label>
-            <Form.Control
-                type="text"
-                name="name"
-                value={this.state.name}
-                placeholder="Enter your name"
-                onChange={this.handleOnChange}
-                onBlur={this.handleOnBlur}
-                onFocus={this.handleOnFocus}
-            />
-            </Form.Group>
-            <span>
-            {this.state.nameError && this.state.nameError}
-            </span>
-            <Form.Group controlId="email">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-                type="email"
-                name="email"
-                value={this.state.email}
-                placeholder="Enter your email"
-                onChange={this.handleOnChange}
-                onBlur={this.handleOnBlur}
-                onFocus={this.handleOnFocus}
+        <form className="emailform" onSubmit={this.sendEmail}>
+            <div className="inputWithButton">
+                <div className="inputNoButton">
+                    <div className="inputGroup">
+                    <Form.Group controlId="name">
+                    <Form.Label>Full Name</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="name"
+                        value={this.state.name}
+                        placeholder="Enter your name"
+                        onChange={this.handleOnChange}
+                        onBlur={this.handleOnBlur}
+                        onFocus={this.handleOnFocus}
+                        className="formInput"
+                    />
+                    </Form.Group>
+                    <span className="formError">
+                    {this.state.nameError && this.state.nameError}
+                    </span>
+                    </div>
+                    <div className="inputGroup">
+                    <Form.Group controlId="email">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                        type="email"
+                        name="email"
+                        value={this.state.email}
+                        placeholder="Enter your email"
+                        onChange={this.handleOnChange}
+                        onBlur={this.handleOnBlur}
+                        onFocus={this.handleOnFocus}
+                        className="formInput"
 
-            />
-            </Form.Group>
-            <span>
-            {this.state.emailError && this.state.emailError}
-            </span>
-            <Form.Group controlId="subject">
-            <Form.Label>Subject</Form.Label>
-            <Form.Control
-                type="text"
-                name="subject"
-                value={this.state.subject}
-                placeholder="Enter subject"
-                onChange={this.handleOnChange}
-                onBlur={this.handleOnBlur}
-                onFocus={this.handleOnFocus}
+                    />
+                    </Form.Group>
+                    <span className="formError">
+                    {this.state.emailError && this.state.emailError}
+                    </span>
+                    </div>
+                    <div className="inputGroup">
+                    <Form.Group controlId="subject">
+                    <Form.Label>Subject</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="subject"
+                        value={this.state.subject}
+                        placeholder="Enter subject"
+                        onChange={this.handleOnChange}
+                        onBlur={this.handleOnBlur}
+                        onFocus={this.handleOnFocus}
+                        className="formInput"
 
-            />
-            </Form.Group>
-            <span>
-            {this.state.subjectError && this.state.subjectError}
-            </span>
-            <Form.Group controlId="date">
-            <Form.Label>Date</Form.Label>
-            <Form.Control
-                type="text"
-                name="date"
-                value={this.state.date}
-                rows="3"
-                placeholder="Date"
-                onChange={this.handleOnChange}
-                onBlur={this.handleOnBlur}
-                onFocus={this.handleOnFocus}
+                    />
+                    </Form.Group>
+                    <span className="formError">
+                    {this.state.subjectError && this.state.subjectError}
+                    </span>
+                    </div>
+                    <div className="inputGroup">
+                    <Form.Group controlId="date">
+                    <Form.Label>Date</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="date"
+                        value={this.state.date}
+                        rows="3"
+                        placeholder="Date"
+                        onChange={this.handleOnChange}
+                        onBlur={this.handleOnBlur}
+                        onFocus={this.handleOnFocus}
+                        className="formInput"
 
-            />
-            </Form.Group>
-            <span>
-            {this.state.dateError && this.state.dateError}
-            </span>
-            <Form.Group controlId="message">
-            <Form.Label>Message</Form.Label>
-            <Form.Control
-                as="textarea"
-                name="message"
-                value={this.state.message}
-                rows="3"
-                placeholder="Enter your message"
-                onChange={this.handleOnChange}
-                onBlur={this.handleOnBlur}
-                onFocus={this.handleOnFocus}
+                    />
+                    </Form.Group>
+                    <span className="formError">
+                    {this.state.dateError && this.state.dateError}
+                    </span>
+                    </div>
+                    <div className="inputGroup">
+                    <Form.Group controlId="message">
+                    <Form.Label>Message</Form.Label>
+                    <Form.Control
+                        as="textarea"
+                        name="message"
+                        value={this.state.message}
+                        rows="3"
+                        placeholder="Enter your message"
+                        onChange={this.handleOnChange}
+                        onBlur={this.handleOnBlur}
+                        onFocus={this.handleOnFocus}
+                        className="formInput"
 
-            />
-            </Form.Group>
-            <span>
-            {this.state.messageError && this.state.messageError}
-            </span>
-            <Button variant="primary" type="submit" disabled={this.state.isButtonDisabled}>
-            Submit
-            </Button>
+                    />
+                    </Form.Group>
+                    <span className="formError">
+                    {this.state.messageError && this.state.messageError}
+                    </span>
+                    </div>
+                </div>
+                <div className="buttonemail">
+                <Button variant="primary" type="submit" disabled={this.state.isButtonDisabled}>
+                Submit
+                </Button>
+                </div>
+            </div>
         </form>
     </React.Fragment>
     );

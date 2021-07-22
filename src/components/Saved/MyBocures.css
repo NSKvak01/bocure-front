@@ -1,0 +1,63 @@
+.list{
+    display:grid;
+    grid-template-columns: 0.5fr 0.5fr;
+    justify-content: center;
+    align-items: center;
+}
+
+.item {
+    width:500px;
+    margin-top: 0px;
+    height: 400px;
+    padding-left: 20px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    
+}
+
+.oneItem{
+    width:500px;
+    margin-top: 25px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.noButton >p {
+    font-size: 16px;
+    width:400px;
+}
+
+.noButtonMain{
+    width:450px;
+    height: 300px;
+    border:1px solid rgb(8,127,255);
+    border-radius: 8px;
+    padding: 20px;
+
+    
+}
+
+.delete{
+    margin-top: 10px;
+    border:2px solid rgb(242, 58, 8);
+    background-color: white;
+    color:rgb(242, 58, 8);
+    border-radius: 4px;
+    padding:5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    font-size: 12px;
+    width:100px
+    
+}
+
+.withButton{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Axios from '../utils/Axios'
 import BocureList from './BocureList'
 import BocureItem from './BocureItem'
+import "./Bocure.css"
 
 export class Bocure extends Component {
     state={
@@ -22,7 +23,7 @@ export class Bocure extends Component {
             activity:result.data.activity,
             link:result.data.link,
             key:result.data.key,
-            participants:result.data.participants
+            participants:result.data.participants,
         })
         if(result.data.price<0.2){
             this.setState({
@@ -103,16 +104,17 @@ export class Bocure extends Component {
         // let sessionStorageBocureItem = window.sessionStorage.getItem("bocureItem")
         try {
             this.getBocuresByKey()
-            console.log(this.state.bocureList)
             
         } catch (error) {
             console.log(error)
         }
     }
-componentDidUpdate(){
-    console.log(this.state.bocureList)
-    
-}
+
+    componentDidUpdate(){
+        console.log(this.state.bocureList)
+        
+    }
+
     getBocuresByKey = async()=>{
         if(window.sessionStorage.getItem("bocureKey")){
             let key = window.sessionStorage.getItem("bocureKey")
@@ -148,14 +150,17 @@ componentDidUpdate(){
     handlePrice = (event)=>{
         if(event.target.value==="Free"){
             this.setState({
+                errorMessage:"",
                 maxPriceInput:"0"
             })
         } else if(event.target.value==="Paid"){
             this.setState({
+                errorMessage:"",
                 maxPriceInput:"1"
             })
         } else {
             this.setState({
+                errorMessage:"",
                 maxPriceInput:""
             })
         }
@@ -164,10 +169,12 @@ componentDidUpdate(){
     handleType = (event)=>{
         if(event.target.value !== "Type"){
             this.setState({
+                errorMessage:"",
                 typeInput:event.target.value.toLowerCase()
             }) 
         }else {
             this.setState({
+                errorMessage:"",
                 typeInput:""
             })
         }
@@ -176,20 +183,24 @@ componentDidUpdate(){
     handleParticipants = (event)=>{
         if(event.target.value !== "Participants"){
             this.setState({
-                participantsInput:event.target.value[0]
+                participantsInput:event.target.value[0],
+                errorMessage:""
             })
         } else {
             this.setState({
-                participantsInput:""
+                participantsInput:"",
+                errorMessage:""
             })
         }
     }
 
+
     render() {
-        const {activity, price, type, participants, accessibility, link, bocureList, key} = this.state
+        const {activity, price, type, participants, accessibility, link, key} = this.state
         return (
-            <div>
-                <div>
+            <div className="bocure">
+                <div className="filtersSpan">
+                <div className="filters">
                     <div className="dropdown">
                         <select className="select" onChange={this.handleType}>
                             <option>Type</option>
@@ -204,7 +215,7 @@ componentDidUpdate(){
                             <option>Busywork</option>
                         </select>
                     </div>
-                    <div>
+                    <div className="dropdown">
                         <select className="select" onChange={this.handlePrice}>
                             <option>Price</option>
                             <option>Free</option>
@@ -225,11 +236,13 @@ componentDidUpdate(){
                         </select>
                     </div>
                     <div>
-                        <button onClick={this.handleOnSubmit}>Find Bocure</button>
+                        <button className="select-filters" onClick={this.handleOnSubmit}>Find Bocure</button>
                     </div>
                 </div>
-                <hr />
-                <span>{this.state.errorMessage && this.state.errorMessage}</span>
+                <div>
+                    <span className="searchError">{this.state.errorMessage && this.state.errorMessage}</span>
+                </div>
+                </div>
                 <div>
                     <BocureItem 
                     activity = {activity}

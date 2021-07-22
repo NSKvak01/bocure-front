@@ -1,0 +1,50 @@
+.nav{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding:10px 20px;
+    background-color: rgb(8,127,255);
+    color:white;
+}
+
+.logolink{
+    font-size: 30px;
+    color:white;
+}
+.logo{
+    padding-left:10px 20px;
+}
+div ul li {
+    display:inline-block
+}
+div ul li a{ 
+    text-decoration: none;
+}
+.ul li:not(:last-child) {
+    display:flex;
+    flex-direction: row;
+    color: white;
+    margin-right: 15px;
+}
+
+.navlink{
+    color:white;
+    display: inline-block;
+}
+
+a:hover{
+    color:white;
+    text-decoration: none;
+}
+
+.logolink{
+    color:white
+}
+
+.selected {
+    border-bottom: 1px solid white;
+}
+
+.menu ul li:not(:last-child) {
+margin-right: 15px;
+}

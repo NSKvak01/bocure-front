@@ -69,27 +69,10 @@ export class Login extends Component {
             window.localStorage.setItem("jwtToken", jwtToken)
             this.props.handleUserLogin(decodedToken)
             this.props.history.push("/bocure")
-            toast.success(`Success login`, {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            toast.success(`Success login`);
         // this.props.history.push("/bocure")
         } catch (error) {
-            toast.error(`Check email/username or password`, {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                }
-            );
+            toast.error(`Check email/username or password`);
         }
     }
 

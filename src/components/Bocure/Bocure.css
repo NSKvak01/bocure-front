@@ -1,0 +1,155 @@
+.filters{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.filters >.dropdown > .select{
+    width:130px;
+    height:30px;
+    margin: 10px 10px;
+    border:1px solid rgb(8,127,255);
+    border-radius: 4px;
+    padding:5px;
+    font-size: 14px;
+
+}
+.select-filters{
+    margin: 10px 10px;
+    width:150px;
+    border-radius:6px;
+    background-color:rgb(8,127,255);
+    border:1px solid rgb(8,127,255);
+    color:white;
+    height: 33px;
+}
+
+.searchError{
+    color:red;
+
+}
+.filtersSpan{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.info{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border:1px solid rgb(8,127,255);
+    border-radius: 30px;
+    width:600px;
+    padding:50px;
+    align-self: center;
+}
+
+.info>h3{
+    font-size: 22px;
+}
+
+.bocure{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.button{
+    margin-top: 20px;
+    border:1px solid rgb(8,127,255);
+    background-color: rgb(8,127,255);
+    color:white;
+    border-radius: 4px;
+    padding:5px 10px;
+    font-size: 12px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.infomain{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+#saveButton{
+    color:rgb(8,127,255);
+    font-weight: bold;
+    background-color: white;
+    border:1px solid rgb(8,127,255);
+}
+
+.calendar{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.emailform{
+width:600px;
+display:flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.inputWithButton{
+    width:600px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.inputNoButton{
+    width:600px;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.formInput{
+    border-color: rgb(8,127,255);
+    margin-bottom: 0px;
+}
+
+.formError{
+    color:red;
+    margin-top:5px;
+    margin-bottom: 40px;
+    font-size: 14px;
+}
+
+.form-group{
+    width:600px;
+    margin-bottom: 0;
+}
+
+.inputGroup{
+    margin-bottom: 10px;
+}
+
+.buttonemail > button {
+    width:150px;
+    align-self: flex-end;
+}
+
+.buttonemail > button:active {
+    background-color: rgb(8,127,255);
+}
+
+.calendarComponent{
+    border: none;
+    width:600px
+}

@@ -8,7 +8,7 @@ import MainRouter from './MainRouter';
 
 export class App extends Component {
   state={
-    user:null
+    user:null,
   }
 
   componentDidMount (){
@@ -27,7 +27,7 @@ export class App extends Component {
       }
     }
   }  
-
+  
   handleUserLogout = ()=>{
     window.localStorage.removeItem("jwtToken")
     setAxiosAuthToken(null)
@@ -52,7 +52,8 @@ export class App extends Component {
         <MainRouter 
           handleUserLogout={this.handleUserLogout}
           user={this.state.user}
-          handleUserLogin = {this.handleUserLogin}/>
+          handleUserLogin = {this.handleUserLogin}
+          />
       </React.Fragment>
     )
   }

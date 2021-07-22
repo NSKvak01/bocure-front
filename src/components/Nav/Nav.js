@@ -1,22 +1,32 @@
 import React, { Component } from 'react'
 import { Link, NavLink} from 'react-router-dom'
+import "./Nav.css"
 
 
 export class Nav extends Component {
     render() {
         return (
-            <nav>
-                <div>
+            <nav className="nav">
+                <div className="logo">
                     <h1>
-                        <Link to ="/bocure">Cure your boredom. Bocure!</Link>
+                        <Link  className="logolink" to ="/bocure">Cure your boredom. <p>Bocure!</p></Link>
                     </h1>
                 </div>
-                <div>
+                <div className="menu">
                     <ul>
                         <li>
                             {this.props.user ? (
-                                <NavLink activeClassName="selected" to="/bocure">
+                                <NavLink className="navlink" activeClassName="selected" to="/bocure">
                                 Bocure search
+                                </NavLink>
+                            ) : (
+                                ""
+                            )}
+                        </li>
+                        <li>
+                            {this.props.user ? (
+                                <NavLink className="navlink" activeClassName="selected" to="/my-bocure">
+                                My bocures
                                 </NavLink>
                             ) : (
                                 ""
@@ -24,22 +34,22 @@ export class Nav extends Component {
                         </li>
                         <li>
                             {this.props.user ? (
-                                <NavLink activeClassName="selected" to="/profile">
+                                <NavLink className="navlink" activeClassName="selected" to="/profile">
                                     Welcome back - {this.props.user.username}
                                 </NavLink>
                             ):(
-                                <NavLink activeClassName="selected" to="/sign-up">
+                                <NavLink className="navlink" activeClassName="selected" to="/sign-up">
                                     Sign up
                                 </NavLink>
                             )}
                         </li>
                         <li>
                             {this.props.user ?(
-                                <NavLink to="/bocure" activeStyle={{ borderBottom: "1px solid white" }} onClick={this.props.handleUserLogout}>
+                                <NavLink className="navlink" to="/bocure" onClick={this.props.handleUserLogout}>
                                     Logout
                                 </NavLink>
                             ):(
-                                <NavLink to="/login" activeStyle={{ borderBottom: "1px solid white" }}>
+                                <NavLink className="navlink" to="/login" activeStyle={{ borderBottom: "1px solid white" }}>
                                     Login
                                 </NavLink>
                             )}

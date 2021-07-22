@@ -240,25 +240,9 @@ export class Signup extends Component {
             let newUser = {firstName:this.state.firstName, lastName:this.state.lastName, username:this.state.username, email:this.state.email, password:this.state.password}
             await Axios.post ('/api/user/signup', newUser)
             this.props.history.push("/login")
-            toast.success(`User created - Please login`, {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                });
+            toast.success(`User created - Please login`);
         } catch (error) {
-            toast.error(`${error.response.data.message}`, {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                });
+            toast.error(`${error.response.data.message}`);
         }
     }
 
