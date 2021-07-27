@@ -3,13 +3,17 @@
     grid-template-columns: 0.5fr 0.5fr;
     justify-content: center;
     align-items: center;
+    align-content: center;
+    justify-items: center;
+    margin-left: 300px;
+    margin-right: 300px;
+    margin-top: 30px;
 }
 
 .item {
-    width:500px;
+    width:550px;
     margin-top: 0px;
-    height: 400px;
-    padding-left: 20px;
+    height: 450px;
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -18,7 +22,7 @@
 }
 
 .oneItem{
-    width:500px;
+    width:550px;
     margin-top: 25px;
     display:flex;
     flex-direction: column;
@@ -27,18 +31,18 @@
 }
 
 .noButton >p {
-    font-size: 16px;
+    font-size: 18px;
     width:400px;
 }
 
 .noButtonMain{
-    width:450px;
-    height: 300px;
+    width:550px;
+    height: 380px;
     border:1px solid rgb(8,127,255);
     border-radius: 8px;
-    padding: 20px;
+    padding: 40px;
+    background-color: rgba(139, 191, 246, 0.123);;
 
-    
 }
 
 .delete{
@@ -60,4 +64,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
+}
+
+.noButton{
+    margin-bottom: 10px;
 }

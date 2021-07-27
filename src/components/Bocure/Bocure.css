@@ -3,26 +3,27 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-top: 30px;
 }
 
 .filters >.dropdown > .select{
-    width:130px;
-    height:30px;
+    width:180px;
+    height:40px;
     margin: 10px 10px;
     border:1px solid rgb(8,127,255);
     border-radius: 4px;
     padding:5px;
-    font-size: 14px;
+    font-size: 16px;
 
 }
 .select-filters{
     margin: 10px 10px;
-    width:150px;
+    width:180px;
     border-radius:6px;
     background-color:rgb(8,127,255);
     border:1px solid rgb(8,127,255);
     color:white;
-    height: 33px;
+    height: 40px;
 }
 
 .searchError{
@@ -41,15 +42,16 @@
     display:flex;
     flex-direction: column;
     justify-content: flex-start;
-    border:1px solid rgb(8,127,255);
-    border-radius: 30px;
-    width:600px;
+    border:2px solid rgb(8,127,255);
+    background-color: rgba(139, 191, 246, 0.123);
+    border-radius: 24px;
+    width:700px;
     padding:50px;
     align-self: center;
 }
 
 .info>h3{
-    font-size: 22px;
+    font-size: 28px;
 }
 
 .bocure{
@@ -66,10 +68,12 @@
     color:white;
     border-radius: 4px;
     padding:5px 10px;
-    font-size: 12px;
+    font-size: 14px;
     margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 10px;
+    width: 150px;
+    height: 40px;
 }
 
 .infomain{
@@ -95,8 +99,12 @@
     margin-top: 50px;
 }
 
+.e-calendar{
+    border:none;
+}
+
 .emailform{
-width:600px;
+width:700px;
 display:flex;
 flex-direction: column;
 justify-content: center;
@@ -109,6 +117,7 @@ align-items: center;
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
+    margin-bottom: 200px;
 }
 
 .inputNoButton{

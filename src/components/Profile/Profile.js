@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Axios from '../utils/Axios';
 import { toast } from 'react-toastify';
+import "./Profile.css"
 
 export class Profile extends Component {
     state ={
@@ -68,38 +69,42 @@ export class Profile extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="div">
-                    <h2 className="section-title">Change profile</h2>
-                    <form className="user" onSubmit={this.handleUserUpdateSubmit}>
-                        <div>
-                        <label htmlFor="firstname">First name</label>
-                        <br />
-                        <input if="firstname" name="userFirstNameInput" value={this.state.userFirstNameInput} onChange={this.handleOnChange} placeholder="First name"/>
-                        </div>
-                        <div>
-                        <label htmlFor="lastname">Last name</label>
-                        <br />
-                        <input id="lastname" name="userLastNameInput" value={this.state.userLastNameInput} onChange={this.handleOnChange}  placeholder="Last name"/>
-                        </div>
-                        <div>
-                        <label htmlFor="username">Username</label>
-                        <br />
-                        <input  id="username" name= "usernameInput" value={this.state.usernameInput} onChange={this.handleOnChange}  placeholder="Username"/>
-                        </div>
-                        <div>
-                        <label htmlFor="email">Email</label>
-                        <br />
-                        <input  id="email" defaultValue={this.state.userEmailInput} disabled={true} placeholder="Email"/>
-                        </div>
-                        <div>
-                        <label htmlFor="password">Password</label>
-                        <br />
-                        <input id="password" name= "passwordInput" value={this.state.passwordInput} onChange={this.handleOnChange}  placeholder="Password"/>
-                        </div>
-                        <div>
-                        <button type="submit">Submit</button>
-                        </div>
-                    </form>
+                <div className="maindiv">
+                    <div className="div">
+                        <h2 className="section-title">Change profile</h2>
+                        <form className="user" onSubmit={this.handleUserUpdateSubmit}>
+                            <div className="noButton">
+                            <div>
+                            <label htmlFor="firstname">First name</label>
+                            <br />
+                            <input if="firstname" name="userFirstNameInput" value={this.state.userFirstNameInput} onChange={this.handleOnChange} placeholder="First name"/>
+                            </div>
+                            <div>
+                            <label htmlFor="lastname">Last name</label>
+                            <br />
+                            <input id="lastname" name="userLastNameInput" value={this.state.userLastNameInput} onChange={this.handleOnChange}  placeholder="Last name"/>
+                            </div>
+                            <div>
+                            <label htmlFor="username">Username</label>
+                            <br />
+                            <input  id="username" name= "usernameInput" value={this.state.usernameInput} onChange={this.handleOnChange}  placeholder="Username"/>
+                            </div>
+                            <div>
+                            <label htmlFor="email">Email</label>
+                            <br />
+                            <input  id="email" defaultValue={this.state.userEmailInput} disabled={true} placeholder="Email"/>
+                            </div>
+                            <div>
+                            <label htmlFor="password">Password</label>
+                            <br />
+                            <input id="password" name= "passwordInput" value={this.state.passwordInput} onChange={this.handleOnChange}  placeholder="Password"/>
+                            </div>
+                            </div>
+                            <div>
+                            <button className="buttonSubmit" type="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </React.Fragment>
         )
