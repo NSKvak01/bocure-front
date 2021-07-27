@@ -162,3 +162,40 @@ align-items: center;
     border: none;
     width:600px
 }
+
+.savespan{
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+}
+
+.group{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+}
+
+.group > h3{
+    color:grey
+}
+
+.group > button {
+    margin-top: 20px;
+    border:1px solid rgb(8,127,255);
+    background-color: rgb(8,127,255);
+    color:white;
+    border-radius: 4px;
+    padding:5px 10px;
+    font-size: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    width: 150px;
+    height: 40px;
+}

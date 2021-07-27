@@ -39,6 +39,17 @@ export class Profile extends Component {
         }
     }
     
+    handleDeleteProfile= async(event)=>{
+        event.preventDefault()
+        try {
+            let deleteUser= await Axios.delete("/api/user/delete-user")
+            this.props.handleUserLogout()
+            this.props.history.push("/sign-up")
+        } catch (error) {
+            
+        }
+    }
+
     handleUserUpdateSubmit = async(event)=>{
         event.preventDefault()
         try {
@@ -104,7 +115,9 @@ export class Profile extends Component {
                             <button className="buttonSubmit" type="submit">Submit</button>
                             </div>
                         </form>
+                        <div onClick= {this.handleDeleteProfile} className="deleteProfile">Delete profile</div>
                     </div>
+
                 </div>
             </React.Fragment>
         )

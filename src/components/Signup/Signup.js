@@ -3,6 +3,7 @@ import { isStrongPassword, isEmail, isAlpha, isAlphanumeric } from 'validator'
 import Axios from '../utils/Axios'
 import { toast } from 'react-toastify'
 import checkUser from '../utils/checkUser'
+import "./Signup.css"
 
 export class Signup extends Component {
     state={
@@ -264,95 +265,104 @@ export class Signup extends Component {
             submitButtonDisabled,
         } = this.state
         return (
-                <div>
-                    <form onSubmit={this.handleSubmitButton}>
+                <div className="mainDiv">
+                    <form className="form1" onSubmit={this.handleSubmitButton}>
+                    <h2 className="section-title">Sign up</h2>
                         <div>
                             <div>
-                                <label htmlFor="firstName">First name</label>
+                                <div className="label">
+                                    <div className="input">
+                                        <label htmlFor="firstName">First name</label>
+                                        <input 
+                                            id="firstName" 
+                                            value={firstName} 
+                                            name="firstName" 
+                                            placeholder="First name"
+                                            onChange={this.handleOnChange}
+                                            onBlur = {this.handleOnBlur}
+                                            onFocus = {this.handleInputOnFocus}
+                                            />
+                                    </div>
+                                    <span>{firstNameError && firstNameError}</span>
+                                </div>
+                                <div className="label">
+                                    <div  className="input">
+                                        <label htmlFor="lastName">Last name</label>
+                                        <input 
+                                            id="lastName" 
+                                            value={lastName} 
+                                            name="lastName" 
+                                            onBlur = {this.handleOnBlur}
+                                            placeholder="Last name"
+                                            onChange={this.handleOnChange}
+                                            onFocus = {this.handleInputOnFocus}
+                                            />
+                                    </div>
+                                    <span>{lastNameError && lastNameError}</span>
+                                </div>
+                            </div>
+                            <div className="label">
+                                <div  className="input">
+                                <label htmlFor="email">Email</label>
                                 <input 
-                                    id="firstName" 
-                                    value={firstName} 
-                                    name="firstName" 
-                                    placeholder="First name"
+                                    id="email" 
+                                    value={email} 
+                                    name="email" 
+                                    placeholder="Email"
                                     onChange={this.handleOnChange}
                                     onBlur = {this.handleOnBlur}
                                     onFocus = {this.handleInputOnFocus}
                                     />
-                                <br />
-                                <span>{firstNameError && firstNameError}</span>
+                                </div>
+                                <span>{emailError && emailError}</span>
                             </div>
-                            <div>
-                                <label htmlFor="lastName">Last name</label>
+                            <div className="label">
+                                <div className="input">
+                                <label htmlFor="username">Username</label>
                                 <input 
-                                    id="lastName" 
-                                    value={lastName} 
-                                    name="lastName" 
-                                    onBlur = {this.handleOnBlur}
-                                    placeholder="Last name"
+                                    id="username" 
+                                    value={username} 
+                                    name="username" 
+                                    placeholder="Username"
                                     onChange={this.handleOnChange}
+                                    onBlur = {this.handleOnBlur}
                                     onFocus = {this.handleInputOnFocus}
                                     />
-                                <br />
-                                <span>{lastNameError && lastNameError}</span>
+                                </div>
+                                <span>{usernameError && usernameError}</span>
+                            </div>
+                            <div className="label">
+                                <div className="input">
+                                <label htmlFor="password">Password</label>
+                                <input 
+                                    id="password" 
+                                    value={password} 
+                                    name="password" 
+                                    placeholder="Password"
+                                    onChange={this.handleOnChange}
+                                    onBlur = {this.handleOnBlur}
+                                    onFocus = {this.handleInputOnFocus}
+                                    />
+                                </div>
+                                <span>{passwordError && passwordError}</span>
+                            </div>
+                            <div className="label">
+                                <div className="input">
+                                <label htmlFor="confirmPassword">Confirm password</label>
+                                <input 
+                                    id="confirmPassword" 
+                                    value={confirmPassword} 
+                                    name="confirmPassword" 
+                                    placeholder="Confirm password"
+                                    onChange={this.handleOnChange}
+                                    onBlur = {this.handleOnBlur}
+                                    onFocus = {this.handleInputOnFocus}
+                                    />
+                                </div>
+                                <span>{confirmPasswordError && confirmPasswordError}</span>
                             </div>
                         </div>
-                        <div>
-                            <label htmlFor="email">Email</label>
-                            <input 
-                                id="email" 
-                                value={email} 
-                                name="email" 
-                                placeholder="Email"
-                                onChange={this.handleOnChange}
-                                onBlur = {this.handleOnBlur}
-                                onFocus = {this.handleInputOnFocus}
-                                />
-                            <br />
-                            <span>{emailError && emailError}</span>
-                        </div>
-                        <div>
-                            <label htmlFor="username">Username</label>
-                            <input 
-                                id="username" 
-                                value={username} 
-                                name="username" 
-                                placeholder="Username"
-                                onChange={this.handleOnChange}
-                                onBlur = {this.handleOnBlur}
-                                onFocus = {this.handleInputOnFocus}
-                                />
-                            <br />
-                            <span>{usernameError && usernameError}</span>
-                        </div>
-                        <div>
-                            <label htmlFor="password">Password</label>
-                            <input 
-                                id="password" 
-                                value={password} 
-                                name="password" 
-                                placeholder="Password"
-                                onChange={this.handleOnChange}
-                                onBlur = {this.handleOnBlur}
-                                onFocus = {this.handleInputOnFocus}
-                                />
-                            <br />
-                            <span>{passwordError && passwordError}</span>
-                        </div>
-                        <div>
-                            <label htmlFor="confirmPassword">Confirm password</label>
-                            <input 
-                                id="confirmPassword" 
-                                value={confirmPassword} 
-                                name="confirmPassword" 
-                                placeholder="Confirm password"
-                                onChange={this.handleOnChange}
-                                onBlur = {this.handleOnBlur}
-                                onFocus = {this.handleInputOnFocus}
-                                />
-                            <br />
-                            <span>{confirmPasswordError && confirmPasswordError}</span>
-                        </div>
-                        <button type="submit" disabled={submitButtonDisabled}>Sign up</button>
+                        <button className="signup" type="submit" disabled={submitButtonDisabled}>Sign up</button>
                     </form>
                 </div>
         )

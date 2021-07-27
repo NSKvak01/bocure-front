@@ -14,14 +14,6 @@ export class MyBocure extends Component {
         this.handleGetAllBocures()
     }
 
-    // componentDidUpdate(prevProps, prevState){
-    //     if(this.state.savedList.length===0){
-    //         this.setState({
-    //             noBocures:true
-    //         })
-    //     }
-    // }
-
     handleGetAllBocures = async ()=>{
         try {
             let getAllBocures = await Axios.get("/api/bocure/get-all-bocures")
@@ -51,7 +43,18 @@ export class MyBocure extends Component {
             )
             this.setState({
                 savedList:filteredArray
+            }, ()=>{
+                if(this.state.savedList.length===0){
+                    this.setState({
+                        noBocures:true
+                    })
+                } else {
+                    this.setState({
+                        noBocures:false
+                    })
+                }
             })
+            
         } catch(e){
             console.log(e)
         }
@@ -64,7 +67,7 @@ export class MyBocure extends Component {
         return (
             <div>
                 {this.state.noBocures ? (
-                    <div>
+                    <div className="group">
                         <h3>Want to find more interesting bocures?</h3>
                         <button onClick={this.handleSignup}>Check here!</button>
                     </div>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Axios from '../utils/Axios'
-import BocureList from './BocureList'
 import BocureItem from './BocureItem'
 import "./Bocure.css"
 

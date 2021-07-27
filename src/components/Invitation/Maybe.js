@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import "./Invitation.css"
+
 
 export class Maybe extends Component {
     handleSignup = ()=>{
@@ -7,9 +9,11 @@ export class Maybe extends Component {
     render() {
         return (
             <React.Fragment>
-                <h1>Contact your friend to get more details.</h1>
+                <div className="group">
+                <h1 className="invitation">Contact your friend to get more details.</h1>
                 <h3>Want to find more interesting bocures?</h3>
                 <button onClick={this.handleSignup}>Check here!</button>
+                </div>
             </React.Fragment>
         )
     }

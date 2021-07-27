@@ -55,3 +55,10 @@ label{
     justify-content: center;
     align-items: flex-start;
 }
+
+.deleteProfile{
+    margin-top: 50px;
+    margin-bottom: -40px;
+    color:red;
+    text-decoration: underline;
+}

@@ -5,7 +5,7 @@ import Axios from "../utils/Axios"
 import jwtDecode from "jwt-decode"
 import checkUser from '../utils/checkUser'
 import setAxiosAuthToken from '../utils/setAxiosAuthToken';
-
+import "./Login.css"
 
 export class Login extends Component {
     state = {
@@ -28,7 +28,7 @@ export class Login extends Component {
     handleInputs = (event)=>{
         if(this.state[event.target.name].length===0){
             this.setState({
-                [`${event.target.name}Error`]:`Please type ${event.target.placeholder}`,
+                [`${event.target.name}Error`]:`Please type ${event.target.placeholder.toLowerCase()}`,
                 submitButtonDisabled:true
             })
         } else {
@@ -97,10 +97,12 @@ export class Login extends Component {
             submitButtonDisabled,
         } = this.state
         return (
-            <div>
-                <div>
-                    <form onSubmit={this.handleSubmitButton}>
-                        <div>
+            <div className="main">
+                <div className="formMain">
+                    <form className="form" onSubmit={this.handleSubmitButton}>
+                        <h2 className="section-title">Login</h2>
+                        <div className="label">
+                        <div className="input">
                         <label htmlFor="email">Email or username</label>
                         <input 
                         name="email" 
@@ -110,23 +112,24 @@ export class Login extends Component {
                         value={email} 
                         onBlur={this.handleInputs}
                         onFocus={this.handleInputOnFocus}/>
-                        <br />
+                        </div>
                         <span>{emailError&& emailError}</span>
                         </div>
-                        <div>
-                            <label htmlFor="password">Password</label>
-                            <input 
-                            name="password" 
-                            id="password" 
-                            placeholder="password"
-                            onChange={this.handleOnChange}
-                            onBlur = {this.handleInputs}
-                            onFocus={this.handleInputOnFocus}
-                            value={password} />
-                            <br />
-                            <span>{passwordError&&passwordError}</span>
+                        <div className="label">
+                            <div className="input">
+                                <label htmlFor="password">Password</label>
+                                <input 
+                                name="password" 
+                                id="password" 
+                                placeholder="password"
+                                onChange={this.handleOnChange}
+                                onBlur = {this.handleInputs}
+                                onFocus={this.handleInputOnFocus}
+                                value={password} />
+                            </div>
+                                <span>{passwordError&&passwordError}</span>
                         </div>
-                        <button type="Submit" disabled={submitButtonDisabled}>Login</button>
+                        <button className="login" type="Submit" disabled={submitButtonDisabled}>Login</button>
                     </form>
                 </div>
             </div>

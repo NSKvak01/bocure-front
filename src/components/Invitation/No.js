@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import "./Invitation.css"
+
 
 export class No extends Component {
     handleSignup = ()=>{
@@ -6,8 +8,8 @@ export class No extends Component {
     }
     render() {
         return (
-            <div>
-                <h1>Invitation is declined.</h1>
+            <div className="group">
+                <h1 className="invitation">Invitation is declined.</h1>
                 <h3>Want to find more interesting bocures?</h3>
                 <button onClick={this.handleSignup}>Check here!</button>
             </div>

@@ -12,6 +12,8 @@ export class BocureItem extends Component {
     state={
         date:"",
         isSchedule:false,
+        repeated:false,
+        repeatError:"",
         
     }
     
@@ -35,7 +37,17 @@ export class BocureItem extends Component {
             isSchedule:!this.state.isSchedule
         })
     }
+    handleRepeated = ()=>{
+        this.setState({
+            repeated:true
+        })
+    }
 
+    handleRepeatError=()=>{
+        this.setState({
+            repeatError:"You already saved this activity, try another one."
+        })
+    }
     render() {
         const {activity, price, type, participants, accessibility, link} = this.props
         return (
@@ -63,16 +75,23 @@ export class BocureItem extends Component {
                         <h3>{`Link: ${link}`}</h3>
                     )}
                     </div>
-                    <div>
-                        <Saved 
-                        activity={activity}
-                        price={price}
-                        type={type}
-                        accessibility={accessibility}
-                        participants={participants}
-                        link={link}
-                        />
-                        <button className="button" onClick={this.openCalendar}>Schedule activity</button>
+                    <div className="buttonSpan">
+                        <div className="buttons">
+                            <Saved 
+                            activity={activity}
+                            price={price}
+                            type={type}
+                            accessibility={accessibility}
+                            participants={participants}
+                            link={link}
+                            repeated={this.state.repeated}
+                            repeatError={this.state.repeatError}
+                            handleRepeatError={this.handleRepeatError}
+                            handleRepeated={this.handleRepeated}
+                            />
+                            <button className="button" onClick={this.openCalendar}>Schedule activity</button>
+                        </div>
+                        <span> {this.state.repeatError&& this.state.repeatError}</span>
                     </div>
                     </div>
                     <div className="calendar" >

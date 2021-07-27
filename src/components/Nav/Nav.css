@@ -11,14 +11,19 @@
     font-size: 30px;
     color:white;
 }
+
 .logo{
     padding-left:10px 20px;
 }
+
 div ul li {
-    display:inline-block
+    display:inline-block;
+    font-size: 20px;
 }
+
 div ul li a{ 
     text-decoration: none;
+    font-size: 20px;
 }
 .ul li:not(:last-child) {
     display:flex;
