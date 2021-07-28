@@ -60,6 +60,10 @@ export class MyBocure extends Component {
         }
     }
 
+    handleSignup = ()=>{
+        this.props.history.push("/sign-up")
+    }
+
 
 
     render() {
