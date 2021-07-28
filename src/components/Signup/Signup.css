@@ -7,6 +7,8 @@
     width:500px;
     padding:50px;
     padding-bottom: 50px;
+    background-color: rgba(139, 191, 246, 0.123);
+
 
 }
 
@@ -15,7 +17,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 80px;
     margin-bottom: 100px;
 }
 
