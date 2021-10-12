@@ -243,7 +243,8 @@ export class Signup extends Component {
             this.props.history.push("/login")
             toast.success(`User created - Please login`);
         } catch (error) {
-            toast.error(`${error.response.data.message}`);
+            // toast.error(`${error.response.data.message}`);
+            toast.error(`error`);
         }
     }
 
