@@ -84,10 +84,6 @@ export class BocureItem extends Component {
                             accessibility={accessibility}
                             participants={participants}
                             link={link}
-                            repeated={this.state.repeated}
-                            repeatError={this.state.repeatError}
-                            handleRepeatError={this.handleRepeatError}
-                            handleRepeated={this.handleRepeated}
                             />
                             <button className="button" onClick={this.openCalendar}>Schedule activity</button>
                         </div>

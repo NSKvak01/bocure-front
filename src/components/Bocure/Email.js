@@ -3,8 +3,8 @@ import { Form, Button, FormCheck,  } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Axios from '../utils/Axios';
 import {isEmpty, isEmail} from "validator"
-import "./Bocure.css"
 import { toast } from 'react-toastify';
+import "./Bocure.css"
 
 
 export class CalendarScheduler extends Component {

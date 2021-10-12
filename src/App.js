@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { ToastContainer} from 'react-toastify';
 import jwtDecode from 'jwt-decode';
+import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import setAxiosAuthToken from './components/utils/setAxiosAuthToken';
 import MainRouter from './MainRouter';

@@ -16,6 +16,22 @@ export class Profile extends Component {
         this.handleFetchUserInfo();
     }
     
+    handleFetchUserInfo= async()=>{
+        try {
+            let fetchedUserInfo = await Axios.get("/api/user/get-user-info")
+            console.log(fetchedUserInfo)
+            this.setState({
+                userFirstNameInput: fetchedUserInfo.data.payload.firstName,
+                userLastNameInput: fetchedUserInfo.data.payload.lastName,
+                usernameInput:fetchedUserInfo.data.payload.username,
+                userEmailInput:fetchedUserInfo.data.payload.email,
+                passwordInput:fetchedUserInfo.data.payload.password,
+            })
+        } catch (error) {
+            
+        }
+    }
+    
     handleOnChange=(event)=>{
         this.setState({
             [event.target.name]: event.target.value
@@ -23,22 +39,6 @@ export class Profile extends Component {
         })
         // console.log(event.target.name, event.target.value)
     }
-    handleFetchUserInfo= async()=>{
-        try {
-            let fetchedUserInfo = await Axios.get("/api/user/get-user-info")
-            console.log(fetchedUserInfo)
-                this.setState({
-                    userFirstNameInput: fetchedUserInfo.data.payload.firstName,
-                    userLastNameInput: fetchedUserInfo.data.payload.lastName,
-                    usernameInput:fetchedUserInfo.data.payload.username,
-                    userEmailInput:fetchedUserInfo.data.payload.email,
-                    passwordInput:fetchedUserInfo.data.payload.password,
-            })
-        } catch (error) {
-            
-        }
-    }
-    
     handleDeleteProfile= async(event)=>{
         event.preventDefault()
         try {

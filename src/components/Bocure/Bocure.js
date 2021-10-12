@@ -108,12 +108,7 @@ export class Bocure extends Component {
             console.log(error)
         }
     }
-
-    componentDidUpdate(){
-        console.log(this.state.bocureList)
-        
-    }
-
+    
     getBocuresByKey = async()=>{
         if(window.sessionStorage.getItem("bocureKey")){
             let key = window.sessionStorage.getItem("bocureKey")
@@ -123,6 +118,11 @@ export class Bocure extends Component {
             let result = await Axios.get(`/api/bocure/get-bocures-from-api?maxprice=${this.state.maxPriceInput}&participants=${this.state.participantsInput}&type=${this.state.typeInput}`)
             this.renderBocures(result)
         }
+    }
+    
+    componentDidUpdate(){
+        console.log(this.state.bocureList)
+        
     }
 
     handleOnSubmit = async(event)=>{
